@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using PackTask.TaskTray;
 
 namespace PackTask
 {
@@ -13,5 +14,33 @@ namespace PackTask
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// タスクトレイに表示するアイコン
+        /// </summary>
+        private NotifyIconWrapper notifyIcon;
+
+        /// <summary>
+        /// System.Windows.Application.Startup イベント を発生させます。
+        /// </summary>
+        /// <param name="e">イベントデータ を格納している StartupEventArgs</param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            this.notifyIcon = new NotifyIconWrapper(this);
+
+            var window = new MainWindow();
+            window.Show();
+        }
+
+        /// <summary>
+        /// System.Windows.Application.Exit イベント を発生させます。
+        /// </summary>
+        /// <param name="e">イベントデータ を格納している ExitEventArgs</param>
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            this.notifyIcon.Dispose();
+        }
     }
 }

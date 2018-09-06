@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,10 @@ namespace PackTask.Interfaces
     /// </summary>
     public interface IContent
     {
-        
+        /// <summary>
+        /// 開く
+        /// </summary>
+        void Show();
     }
 
     /// <summary>
@@ -25,9 +29,12 @@ namespace PackTask.Interfaces
     /// <summary>
     /// タスク
     /// </summary>
-    public interface IMyTask : IContent
+    public interface ITask : IContent
     {
-
+        /// <summary>
+        /// タスクが実行時に持っている変数群。これ以外に値は使用不可
+        /// </summary>
+        IEnumerable<IVariable> Values { get; }
     }
 
     /// <summary>
@@ -45,6 +52,8 @@ namespace PackTask.Interfaces
     {
         VariableType VariableType { get; }
         SourceType SourceType { get; set; }
+
+        
 
     }
 

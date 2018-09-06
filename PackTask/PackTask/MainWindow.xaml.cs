@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PackTask.ViewModels;
 
 namespace PackTask
 {
@@ -23,6 +24,7 @@ namespace PackTask
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }
